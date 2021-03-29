@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id "com.diffplug.spotless" version "5.11.1"
 }
 
 group 'org.example'
@@ -12,6 +13,7 @@ repositories {
 
 dependencies {
     implementation 'org.bouncycastle:bcprov-jdk15on:1.68'
+    implementation 'org.web3j:core:4.8.4'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
@@ -23,4 +25,13 @@ test {
 
 application {
     mainClass = 'App'
+}
+
+spotless {
+    java {
+        importOrder()
+        removeUnusedImports()
+
+        googleJavaFormat()
+    }
 }
